@@ -34,8 +34,8 @@ function Workspace() {
     },
   });
 
-  const tools = data ?? fallback;
-  const grouped = tools.reduce<Record<string, typeof tools>>((acc, t) => {
+  const tools: any[] = data ?? fallback;
+  const grouped = tools.reduce<Record<string, any[]>>((acc, t) => {
     (acc[t.category] ||= []).push(t);
     return acc;
   }, {});
