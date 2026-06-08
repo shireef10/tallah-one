@@ -29,6 +29,7 @@ import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAdminWorkspaceToolsRouteImport } from './routes/_authenticated/admin.workspace-tools'
 import { Route as AuthenticatedAdminTutorialsRouteImport } from './routes/_authenticated/admin.tutorials'
 import { Route as AuthenticatedAdminServiceTypesRouteImport } from './routes/_authenticated/admin.service-types'
+import { Route as AuthenticatedAdminServiceRequestsRouteImport } from './routes/_authenticated/admin.service-requests'
 import { Route as AuthenticatedAdminProcessesRouteImport } from './routes/_authenticated/admin.processes'
 import { Route as AuthenticatedAdminMeetingsRouteImport } from './routes/_authenticated/admin.meetings'
 import { Route as AuthenticatedAdminKnowledgeCategoriesRouteImport } from './routes/_authenticated/admin.knowledge-categories'
@@ -140,6 +141,12 @@ const AuthenticatedAdminServiceTypesRoute =
     path: '/service-types',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminServiceRequestsRoute =
+  AuthenticatedAdminServiceRequestsRouteImport.update({
+    id: '/service-requests',
+    path: '/service-requests',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminProcessesRoute =
   AuthenticatedAdminProcessesRouteImport.update({
     id: '/processes',
@@ -198,6 +205,7 @@ export interface FileRoutesByFullPath {
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
   '/admin/meetings': typeof AuthenticatedAdminMeetingsRoute
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
+  '/admin/service-requests': typeof AuthenticatedAdminServiceRequestsRoute
   '/admin/service-types': typeof AuthenticatedAdminServiceTypesRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
@@ -224,6 +232,7 @@ export interface FileRoutesByTo {
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
   '/admin/meetings': typeof AuthenticatedAdminMeetingsRoute
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
+  '/admin/service-requests': typeof AuthenticatedAdminServiceRequestsRoute
   '/admin/service-types': typeof AuthenticatedAdminServiceTypesRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
@@ -253,6 +262,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
   '/_authenticated/admin/meetings': typeof AuthenticatedAdminMeetingsRoute
   '/_authenticated/admin/processes': typeof AuthenticatedAdminProcessesRoute
+  '/_authenticated/admin/service-requests': typeof AuthenticatedAdminServiceRequestsRoute
   '/_authenticated/admin/service-types': typeof AuthenticatedAdminServiceTypesRoute
   '/_authenticated/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/_authenticated/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
@@ -282,6 +292,7 @@ export interface FileRouteTypes {
     | '/admin/knowledge-categories'
     | '/admin/meetings'
     | '/admin/processes'
+    | '/admin/service-requests'
     | '/admin/service-types'
     | '/admin/tutorials'
     | '/admin/workspace-tools'
@@ -308,6 +319,7 @@ export interface FileRouteTypes {
     | '/admin/knowledge-categories'
     | '/admin/meetings'
     | '/admin/processes'
+    | '/admin/service-requests'
     | '/admin/service-types'
     | '/admin/tutorials'
     | '/admin/workspace-tools'
@@ -336,6 +348,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/knowledge-categories'
     | '/_authenticated/admin/meetings'
     | '/_authenticated/admin/processes'
+    | '/_authenticated/admin/service-requests'
     | '/_authenticated/admin/service-types'
     | '/_authenticated/admin/tutorials'
     | '/_authenticated/admin/workspace-tools'
@@ -490,6 +503,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminServiceTypesRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/service-requests': {
+      id: '/_authenticated/admin/service-requests'
+      path: '/service-requests'
+      fullPath: '/admin/service-requests'
+      preLoaderRoute: typeof AuthenticatedAdminServiceRequestsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/processes': {
       id: '/_authenticated/admin/processes'
       path: '/processes'
@@ -542,6 +562,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminKnowledgeCategoriesRoute: typeof AuthenticatedAdminKnowledgeCategoriesRoute
   AuthenticatedAdminMeetingsRoute: typeof AuthenticatedAdminMeetingsRoute
   AuthenticatedAdminProcessesRoute: typeof AuthenticatedAdminProcessesRoute
+  AuthenticatedAdminServiceRequestsRoute: typeof AuthenticatedAdminServiceRequestsRoute
   AuthenticatedAdminServiceTypesRoute: typeof AuthenticatedAdminServiceTypesRoute
   AuthenticatedAdminTutorialsRoute: typeof AuthenticatedAdminTutorialsRoute
   AuthenticatedAdminWorkspaceToolsRoute: typeof AuthenticatedAdminWorkspaceToolsRoute
@@ -556,6 +577,8 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
     AuthenticatedAdminKnowledgeCategoriesRoute,
   AuthenticatedAdminMeetingsRoute: AuthenticatedAdminMeetingsRoute,
   AuthenticatedAdminProcessesRoute: AuthenticatedAdminProcessesRoute,
+  AuthenticatedAdminServiceRequestsRoute:
+    AuthenticatedAdminServiceRequestsRoute,
   AuthenticatedAdminServiceTypesRoute: AuthenticatedAdminServiceTypesRoute,
   AuthenticatedAdminTutorialsRoute: AuthenticatedAdminTutorialsRoute,
   AuthenticatedAdminWorkspaceToolsRoute: AuthenticatedAdminWorkspaceToolsRoute,
