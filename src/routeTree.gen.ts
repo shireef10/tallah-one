@@ -28,6 +28,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminWorkspaceToolsRouteImport } from './routes/_authenticated/admin.workspace-tools'
 import { Route as AuthenticatedAdminTutorialsRouteImport } from './routes/_authenticated/admin.tutorials'
+import { Route as AuthenticatedAdminTicketsRouteImport } from './routes/_authenticated/admin.tickets'
 import { Route as AuthenticatedAdminServiceTypesRouteImport } from './routes/_authenticated/admin.service-types'
 import { Route as AuthenticatedAdminServiceRequestsRouteImport } from './routes/_authenticated/admin.service-requests'
 import { Route as AuthenticatedAdminProcessesRouteImport } from './routes/_authenticated/admin.processes'
@@ -135,6 +136,12 @@ const AuthenticatedAdminTutorialsRoute =
     path: '/tutorials',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminTicketsRoute =
+  AuthenticatedAdminTicketsRouteImport.update({
+    id: '/tickets',
+    path: '/tickets',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminServiceTypesRoute =
   AuthenticatedAdminServiceTypesRouteImport.update({
     id: '/service-types',
@@ -207,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/admin/service-requests': typeof AuthenticatedAdminServiceRequestsRoute
   '/admin/service-types': typeof AuthenticatedAdminServiceTypesRoute
+  '/admin/tickets': typeof AuthenticatedAdminTicketsRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
@@ -234,6 +242,7 @@ export interface FileRoutesByTo {
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/admin/service-requests': typeof AuthenticatedAdminServiceRequestsRoute
   '/admin/service-types': typeof AuthenticatedAdminServiceTypesRoute
+  '/admin/tickets': typeof AuthenticatedAdminTicketsRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -264,6 +273,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/_authenticated/admin/service-requests': typeof AuthenticatedAdminServiceRequestsRoute
   '/_authenticated/admin/service-types': typeof AuthenticatedAdminServiceTypesRoute
+  '/_authenticated/admin/tickets': typeof AuthenticatedAdminTicketsRoute
   '/_authenticated/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/_authenticated/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
@@ -294,6 +304,7 @@ export interface FileRouteTypes {
     | '/admin/processes'
     | '/admin/service-requests'
     | '/admin/service-types'
+    | '/admin/tickets'
     | '/admin/tutorials'
     | '/admin/workspace-tools'
     | '/admin/'
@@ -321,6 +332,7 @@ export interface FileRouteTypes {
     | '/admin/processes'
     | '/admin/service-requests'
     | '/admin/service-types'
+    | '/admin/tickets'
     | '/admin/tutorials'
     | '/admin/workspace-tools'
     | '/admin'
@@ -350,6 +362,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/processes'
     | '/_authenticated/admin/service-requests'
     | '/_authenticated/admin/service-types'
+    | '/_authenticated/admin/tickets'
     | '/_authenticated/admin/tutorials'
     | '/_authenticated/admin/workspace-tools'
     | '/_authenticated/admin/'
@@ -496,6 +509,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminTutorialsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/tickets': {
+      id: '/_authenticated/admin/tickets'
+      path: '/tickets'
+      fullPath: '/admin/tickets'
+      preLoaderRoute: typeof AuthenticatedAdminTicketsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/service-types': {
       id: '/_authenticated/admin/service-types'
       path: '/service-types'
@@ -564,6 +584,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminProcessesRoute: typeof AuthenticatedAdminProcessesRoute
   AuthenticatedAdminServiceRequestsRoute: typeof AuthenticatedAdminServiceRequestsRoute
   AuthenticatedAdminServiceTypesRoute: typeof AuthenticatedAdminServiceTypesRoute
+  AuthenticatedAdminTicketsRoute: typeof AuthenticatedAdminTicketsRoute
   AuthenticatedAdminTutorialsRoute: typeof AuthenticatedAdminTutorialsRoute
   AuthenticatedAdminWorkspaceToolsRoute: typeof AuthenticatedAdminWorkspaceToolsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
@@ -580,6 +601,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminServiceRequestsRoute:
     AuthenticatedAdminServiceRequestsRoute,
   AuthenticatedAdminServiceTypesRoute: AuthenticatedAdminServiceTypesRoute,
+  AuthenticatedAdminTicketsRoute: AuthenticatedAdminTicketsRoute,
   AuthenticatedAdminTutorialsRoute: AuthenticatedAdminTutorialsRoute,
   AuthenticatedAdminWorkspaceToolsRoute: AuthenticatedAdminWorkspaceToolsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
