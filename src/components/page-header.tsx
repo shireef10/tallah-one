@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export function PageHeader({
   eyebrow, title, description, action, className,
 }: {
-  eyebrow?: string;
+  eyebrow?: ReactNode;
   title: ReactNode;
   description?: ReactNode;
   action?: ReactNode;
