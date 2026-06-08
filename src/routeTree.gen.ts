@@ -26,6 +26,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedAnnouncementsRouteImport } from './routes/_authenticated/announcements'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminWorkspaceToolsRouteImport } from './routes/_authenticated/admin.workspace-tools'
 import { Route as AuthenticatedAdminTutorialsRouteImport } from './routes/_authenticated/admin.tutorials'
 import { Route as AuthenticatedAdminProcessesRouteImport } from './routes/_authenticated/admin.processes'
 import { Route as AuthenticatedAdminKnowledgeCategoriesRouteImport } from './routes/_authenticated/admin.knowledge-categories'
@@ -119,6 +120,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminWorkspaceToolsRoute =
+  AuthenticatedAdminWorkspaceToolsRouteImport.update({
+    id: '/workspace-tools',
+    path: '/workspace-tools',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminTutorialsRoute =
   AuthenticatedAdminTutorialsRouteImport.update({
     id: '/tutorials',
@@ -177,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
+  '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -200,6 +208,7 @@ export interface FileRoutesByTo {
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
+  '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -226,6 +235,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
   '/_authenticated/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/_authenticated/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
+  '/_authenticated/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/admin/knowledge-categories'
     | '/admin/processes'
     | '/admin/tutorials'
+    | '/admin/workspace-tools'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -275,6 +286,7 @@ export interface FileRouteTypes {
     | '/admin/knowledge-categories'
     | '/admin/processes'
     | '/admin/tutorials'
+    | '/admin/workspace-tools'
     | '/admin'
   id:
     | '__root__'
@@ -300,6 +312,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/knowledge-categories'
     | '/_authenticated/admin/processes'
     | '/_authenticated/admin/tutorials'
+    | '/_authenticated/admin/workspace-tools'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -430,6 +443,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/workspace-tools': {
+      id: '/_authenticated/admin/workspace-tools'
+      path: '/workspace-tools'
+      fullPath: '/admin/workspace-tools'
+      preLoaderRoute: typeof AuthenticatedAdminWorkspaceToolsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/tutorials': {
       id: '/_authenticated/admin/tutorials'
       path: '/tutorials'
@@ -482,6 +502,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminKnowledgeCategoriesRoute: typeof AuthenticatedAdminKnowledgeCategoriesRoute
   AuthenticatedAdminProcessesRoute: typeof AuthenticatedAdminProcessesRoute
   AuthenticatedAdminTutorialsRoute: typeof AuthenticatedAdminTutorialsRoute
+  AuthenticatedAdminWorkspaceToolsRoute: typeof AuthenticatedAdminWorkspaceToolsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
@@ -493,6 +514,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
     AuthenticatedAdminKnowledgeCategoriesRoute,
   AuthenticatedAdminProcessesRoute: AuthenticatedAdminProcessesRoute,
   AuthenticatedAdminTutorialsRoute: AuthenticatedAdminTutorialsRoute,
+  AuthenticatedAdminWorkspaceToolsRoute: AuthenticatedAdminWorkspaceToolsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
