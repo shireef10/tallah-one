@@ -27,6 +27,7 @@ import { Route as AuthenticatedAnnouncementsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminWorkspaceToolsRouteImport } from './routes/_authenticated/admin.workspace-tools'
+import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminTutorialsRouteImport } from './routes/_authenticated/admin.tutorials'
 import { Route as AuthenticatedAdminTicketsRouteImport } from './routes/_authenticated/admin.tickets'
 import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authenticated/admin.team'
@@ -131,6 +132,11 @@ const AuthenticatedAdminWorkspaceToolsRoute =
     path: '/workspace-tools',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
 const AuthenticatedAdminTutorialsRoute =
   AuthenticatedAdminTutorialsRouteImport.update({
     id: '/tutorials',
@@ -223,6 +229,7 @@ export interface FileRoutesByFullPath {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/tickets': typeof AuthenticatedAdminTicketsRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
@@ -252,6 +259,7 @@ export interface FileRoutesByTo {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/tickets': typeof AuthenticatedAdminTicketsRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
@@ -284,6 +292,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/team': typeof AuthenticatedAdminTeamRoute
   '/_authenticated/admin/tickets': typeof AuthenticatedAdminTicketsRoute
   '/_authenticated/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
+  '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
@@ -316,6 +325,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/tickets'
     | '/admin/tutorials'
+    | '/admin/users'
     | '/admin/workspace-tools'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -345,6 +355,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/tickets'
     | '/admin/tutorials'
+    | '/admin/users'
     | '/admin/workspace-tools'
     | '/admin'
   id:
@@ -376,6 +387,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/team'
     | '/_authenticated/admin/tickets'
     | '/_authenticated/admin/tutorials'
+    | '/_authenticated/admin/users'
     | '/_authenticated/admin/workspace-tools'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
@@ -514,6 +526,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminWorkspaceToolsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/tutorials': {
       id: '/_authenticated/admin/tutorials'
       path: '/tutorials'
@@ -606,6 +625,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminTeamRoute: typeof AuthenticatedAdminTeamRoute
   AuthenticatedAdminTicketsRoute: typeof AuthenticatedAdminTicketsRoute
   AuthenticatedAdminTutorialsRoute: typeof AuthenticatedAdminTutorialsRoute
+  AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
   AuthenticatedAdminWorkspaceToolsRoute: typeof AuthenticatedAdminWorkspaceToolsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
@@ -624,6 +644,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminTeamRoute: AuthenticatedAdminTeamRoute,
   AuthenticatedAdminTicketsRoute: AuthenticatedAdminTicketsRoute,
   AuthenticatedAdminTutorialsRoute: AuthenticatedAdminTutorialsRoute,
+  AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
   AuthenticatedAdminWorkspaceToolsRoute: AuthenticatedAdminWorkspaceToolsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
