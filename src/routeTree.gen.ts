@@ -27,6 +27,7 @@ import { Route as AuthenticatedAnnouncementsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminTutorialsRouteImport } from './routes/_authenticated/admin.tutorials'
+import { Route as AuthenticatedAdminProcessesRouteImport } from './routes/_authenticated/admin.processes'
 import { Route as AuthenticatedAdminKnowledgeCategoriesRouteImport } from './routes/_authenticated/admin.knowledge-categories'
 import { Route as AuthenticatedAdminKnowledgeRouteImport } from './routes/_authenticated/admin.knowledge'
 import { Route as AuthenticatedAdminAnnouncementsRouteImport } from './routes/_authenticated/admin.announcements'
@@ -123,6 +124,12 @@ const AuthenticatedAdminTutorialsRoute =
     path: '/tutorials',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminProcessesRoute =
+  AuthenticatedAdminProcessesRouteImport.update({
+    id: '/processes',
+    path: '/processes',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminKnowledgeCategoriesRoute =
   AuthenticatedAdminKnowledgeCategoriesRouteImport.update({
     id: '/knowledge-categories',
@@ -161,6 +168,7 @@ export interface FileRoutesByFullPath {
   '/admin/announcements': typeof AuthenticatedAdminAnnouncementsRoute
   '/admin/knowledge': typeof AuthenticatedAdminKnowledgeRoute
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
+  '/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
@@ -182,6 +190,7 @@ export interface FileRoutesByTo {
   '/admin/announcements': typeof AuthenticatedAdminAnnouncementsRoute
   '/admin/knowledge': typeof AuthenticatedAdminKnowledgeRoute
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
+  '/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
@@ -206,6 +215,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/announcements': typeof AuthenticatedAdminAnnouncementsRoute
   '/_authenticated/admin/knowledge': typeof AuthenticatedAdminKnowledgeRoute
   '/_authenticated/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
+  '/_authenticated/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/_authenticated/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
@@ -230,6 +240,7 @@ export interface FileRouteTypes {
     | '/admin/announcements'
     | '/admin/knowledge'
     | '/admin/knowledge-categories'
+    | '/admin/processes'
     | '/admin/tutorials'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -251,6 +262,7 @@ export interface FileRouteTypes {
     | '/admin/announcements'
     | '/admin/knowledge'
     | '/admin/knowledge-categories'
+    | '/admin/processes'
     | '/admin/tutorials'
     | '/admin'
   id:
@@ -274,6 +286,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/announcements'
     | '/_authenticated/admin/knowledge'
     | '/_authenticated/admin/knowledge-categories'
+    | '/_authenticated/admin/processes'
     | '/_authenticated/admin/tutorials'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
@@ -412,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminTutorialsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/processes': {
+      id: '/_authenticated/admin/processes'
+      path: '/processes'
+      fullPath: '/admin/processes'
+      preLoaderRoute: typeof AuthenticatedAdminProcessesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/knowledge-categories': {
       id: '/_authenticated/admin/knowledge-categories'
       path: '/knowledge-categories'
@@ -440,6 +460,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnnouncementsRoute: typeof AuthenticatedAdminAnnouncementsRoute
   AuthenticatedAdminKnowledgeRoute: typeof AuthenticatedAdminKnowledgeRoute
   AuthenticatedAdminKnowledgeCategoriesRoute: typeof AuthenticatedAdminKnowledgeCategoriesRoute
+  AuthenticatedAdminProcessesRoute: typeof AuthenticatedAdminProcessesRoute
   AuthenticatedAdminTutorialsRoute: typeof AuthenticatedAdminTutorialsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
@@ -449,6 +470,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminKnowledgeRoute: AuthenticatedAdminKnowledgeRoute,
   AuthenticatedAdminKnowledgeCategoriesRoute:
     AuthenticatedAdminKnowledgeCategoriesRoute,
+  AuthenticatedAdminProcessesRoute: AuthenticatedAdminProcessesRoute,
   AuthenticatedAdminTutorialsRoute: AuthenticatedAdminTutorialsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
