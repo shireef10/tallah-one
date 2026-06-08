@@ -30,6 +30,7 @@ import { Route as AuthenticatedAdminTutorialsRouteImport } from './routes/_authe
 import { Route as AuthenticatedAdminProcessesRouteImport } from './routes/_authenticated/admin.processes'
 import { Route as AuthenticatedAdminKnowledgeCategoriesRouteImport } from './routes/_authenticated/admin.knowledge-categories'
 import { Route as AuthenticatedAdminKnowledgeRouteImport } from './routes/_authenticated/admin.knowledge'
+import { Route as AuthenticatedAdminFaqsRouteImport } from './routes/_authenticated/admin.faqs'
 import { Route as AuthenticatedAdminAnnouncementsRouteImport } from './routes/_authenticated/admin.announcements'
 
 const AuthRoute = AuthRouteImport.update({
@@ -142,6 +143,11 @@ const AuthenticatedAdminKnowledgeRoute =
     path: '/knowledge',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminFaqsRoute = AuthenticatedAdminFaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
 const AuthenticatedAdminAnnouncementsRoute =
   AuthenticatedAdminAnnouncementsRouteImport.update({
     id: '/announcements',
@@ -166,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/team': typeof AuthenticatedTeamRoute
   '/workspace': typeof AuthenticatedWorkspaceRoute
   '/admin/announcements': typeof AuthenticatedAdminAnnouncementsRoute
+  '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
   '/admin/knowledge': typeof AuthenticatedAdminKnowledgeRoute
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
@@ -188,6 +195,7 @@ export interface FileRoutesByTo {
   '/team': typeof AuthenticatedTeamRoute
   '/workspace': typeof AuthenticatedWorkspaceRoute
   '/admin/announcements': typeof AuthenticatedAdminAnnouncementsRoute
+  '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
   '/admin/knowledge': typeof AuthenticatedAdminKnowledgeRoute
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
@@ -213,6 +221,7 @@ export interface FileRoutesById {
   '/_authenticated/team': typeof AuthenticatedTeamRoute
   '/_authenticated/workspace': typeof AuthenticatedWorkspaceRoute
   '/_authenticated/admin/announcements': typeof AuthenticatedAdminAnnouncementsRoute
+  '/_authenticated/admin/faqs': typeof AuthenticatedAdminFaqsRoute
   '/_authenticated/admin/knowledge': typeof AuthenticatedAdminKnowledgeRoute
   '/_authenticated/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
   '/_authenticated/admin/processes': typeof AuthenticatedAdminProcessesRoute
@@ -238,6 +247,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/workspace'
     | '/admin/announcements'
+    | '/admin/faqs'
     | '/admin/knowledge'
     | '/admin/knowledge-categories'
     | '/admin/processes'
@@ -260,6 +270,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/workspace'
     | '/admin/announcements'
+    | '/admin/faqs'
     | '/admin/knowledge'
     | '/admin/knowledge-categories'
     | '/admin/processes'
@@ -284,6 +295,7 @@ export interface FileRouteTypes {
     | '/_authenticated/team'
     | '/_authenticated/workspace'
     | '/_authenticated/admin/announcements'
+    | '/_authenticated/admin/faqs'
     | '/_authenticated/admin/knowledge'
     | '/_authenticated/admin/knowledge-categories'
     | '/_authenticated/admin/processes'
@@ -446,6 +458,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminKnowledgeRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/faqs': {
+      id: '/_authenticated/admin/faqs'
+      path: '/faqs'
+      fullPath: '/admin/faqs'
+      preLoaderRoute: typeof AuthenticatedAdminFaqsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/announcements': {
       id: '/_authenticated/admin/announcements'
       path: '/announcements'
@@ -458,6 +477,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnnouncementsRoute: typeof AuthenticatedAdminAnnouncementsRoute
+  AuthenticatedAdminFaqsRoute: typeof AuthenticatedAdminFaqsRoute
   AuthenticatedAdminKnowledgeRoute: typeof AuthenticatedAdminKnowledgeRoute
   AuthenticatedAdminKnowledgeCategoriesRoute: typeof AuthenticatedAdminKnowledgeCategoriesRoute
   AuthenticatedAdminProcessesRoute: typeof AuthenticatedAdminProcessesRoute
@@ -467,6 +487,7 @@ interface AuthenticatedAdminRouteChildren {
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnnouncementsRoute: AuthenticatedAdminAnnouncementsRoute,
+  AuthenticatedAdminFaqsRoute: AuthenticatedAdminFaqsRoute,
   AuthenticatedAdminKnowledgeRoute: AuthenticatedAdminKnowledgeRoute,
   AuthenticatedAdminKnowledgeCategoriesRoute:
     AuthenticatedAdminKnowledgeCategoriesRoute,
