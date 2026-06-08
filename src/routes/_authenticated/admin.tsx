@@ -66,7 +66,8 @@ function AdminLayout() {
               <p className="px-2 pb-2 text-[10px] uppercase tracking-widest text-muted-foreground font-medium">{s.group}</p>
               <nav className="space-y-0.5">
                 {s.items.map((i) => {
-                  const active = i.exact ? pathname === i.to : pathname.startsWith(i.to);
+                  const exact = "exact" in i ? i.exact : false;
+                  const active = exact ? pathname === i.to : pathname.startsWith(i.to);
                   return (
                     <Link key={i.to} to={i.to}
                       className={cn(
