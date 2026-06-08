@@ -56,6 +56,224 @@ export type Database = {
         }
         Relationships: []
       }
+      faqs: {
+        Row: {
+          answer: string
+          category: string
+          created_at: string
+          helpful_count: number
+          id: string
+          not_helpful_count: number
+          published: boolean
+          question: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          answer: string
+          category?: string
+          created_at?: string
+          helpful_count?: number
+          id?: string
+          not_helpful_count?: number
+          published?: boolean
+          question: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          answer?: string
+          category?: string
+          created_at?: string
+          helpful_count?: number
+          id?: string
+          not_helpful_count?: number
+          published?: boolean
+          question?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      knowledge_articles: {
+        Row: {
+          attachments: Json
+          category_id: string | null
+          content: string
+          created_at: string
+          created_by: string | null
+          excerpt: string | null
+          id: string
+          published: boolean
+          slug: string
+          tags: string[]
+          title: string
+          updated_at: string
+          views: number
+        }
+        Insert: {
+          attachments?: Json
+          category_id?: string | null
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          slug: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+          views?: number
+        }
+        Update: {
+          attachments?: Json
+          category_id?: string | null
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          slug?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+          views?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "knowledge_articles_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      knowledge_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          name: string
+          slug: string
+          sort_order: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name: string
+          slug: string
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name?: string
+          slug?: string
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      meeting_links: {
+        Row: {
+          active: boolean
+          created_at: string
+          department: string | null
+          description: string | null
+          id: string
+          name: string
+          provider: string | null
+          sort_order: number
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          department?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          provider?: string | null
+          sort_order?: number
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          department?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          provider?: string | null
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      processes: {
+        Row: {
+          attachments: Json
+          content: string
+          created_at: string
+          created_by: string | null
+          department: string | null
+          flowchart_url: string | null
+          id: string
+          owner: string | null
+          published: boolean
+          slug: string
+          summary: string | null
+          title: string
+          updated_at: string
+          version: string | null
+        }
+        Insert: {
+          attachments?: Json
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          department?: string | null
+          flowchart_url?: string | null
+          id?: string
+          owner?: string | null
+          published?: boolean
+          slug: string
+          summary?: string | null
+          title: string
+          updated_at?: string
+          version?: string | null
+        }
+        Update: {
+          attachments?: Json
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          department?: string | null
+          flowchart_url?: string | null
+          id?: string
+          owner?: string | null
+          published?: boolean
+          slug?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string
+          version?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -86,6 +304,155 @@ export type Database = {
           phone?: string | null
           position?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      service_request_types: {
+        Row: {
+          active: boolean
+          created_at: string
+          department: string | null
+          description: string | null
+          fields: Json
+          icon: string | null
+          id: string
+          name: string
+          slug: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          department?: string | null
+          description?: string | null
+          fields?: Json
+          icon?: string | null
+          id?: string
+          name: string
+          slug: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          department?: string | null
+          description?: string | null
+          fields?: Json
+          icon?: string | null
+          id?: string
+          name?: string
+          slug?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      service_requests: {
+        Row: {
+          assignee_id: string | null
+          created_at: string
+          id: string
+          notes: string | null
+          payload: Json
+          status: Database["public"]["Enums"]["request_status"]
+          type_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          assignee_id?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          payload?: Json
+          status?: Database["public"]["Enums"]["request_status"]
+          type_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          assignee_id?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          payload?: Json
+          status?: Database["public"]["Enums"]["request_status"]
+          type_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_requests_type_id_fkey"
+            columns: ["type_id"]
+            isOneToOne: false
+            referencedRelation: "service_request_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      site_settings: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      support_tickets: {
+        Row: {
+          assignee_id: string | null
+          attachments: Json
+          category: string
+          created_at: string
+          description: string
+          id: string
+          priority: Database["public"]["Enums"]["ticket_priority"]
+          resolution: string | null
+          status: Database["public"]["Enums"]["ticket_status"]
+          subject: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          assignee_id?: string | null
+          attachments?: Json
+          category?: string
+          created_at?: string
+          description: string
+          id?: string
+          priority?: Database["public"]["Enums"]["ticket_priority"]
+          resolution?: string | null
+          status?: Database["public"]["Enums"]["ticket_status"]
+          subject: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          assignee_id?: string | null
+          attachments?: Json
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          priority?: Database["public"]["Enums"]["ticket_priority"]
+          resolution?: string | null
+          status?: Database["public"]["Enums"]["ticket_status"]
+          subject?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -292,6 +659,14 @@ export type Database = {
         | "digital_transformation"
         | "department_manager"
         | "employee"
+      request_status:
+        | "pending"
+        | "approved"
+        | "in_progress"
+        | "completed"
+        | "rejected"
+      ticket_priority: "low" | "normal" | "high" | "urgent"
+      ticket_status: "open" | "in_progress" | "waiting" | "resolved" | "closed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -426,6 +801,15 @@ export const Constants = {
         "department_manager",
         "employee",
       ],
+      request_status: [
+        "pending",
+        "approved",
+        "in_progress",
+        "completed",
+        "rejected",
+      ],
+      ticket_priority: ["low", "normal", "high", "urgent"],
+      ticket_status: ["open", "in_progress", "waiting", "resolved", "closed"],
     },
   },
 } as const
