@@ -1,30 +1,58 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/page-header";
-
-const faqs = [
-  { q: "How do I reset my ERP password?", a: "Open a support ticket under category ERP — the team will reset it within 1 business hour." },
-  { q: "Where do I request a new system user?", a: "Use Service Requests → New User Request and fill in the role and department." },
-  { q: "Can I download tutorial PDFs?", a: "Yes. Open a tutorial in the Learning Center and use the Download PDF button when attached." },
-  { q: "How do I report a website bug?", a: "Open a support ticket under category Website with steps to reproduce and a screenshot." },
-];
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/faqs")({
   head: () => ({ meta: [{ title: "FAQs — Tallah One" }] }),
-  component: () => (
-    <div>
-      <PageHeader eyebrow="Quick answers" title="Frequently Asked Questions" description="The most common questions across ERP, CRM, marketing, WhatsApp, SMS, website, and general operations." />
-      <Card><CardContent className="p-6">
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((f, i) => (
-            <AccordionItem key={i} value={String(i)}>
-              <AccordionTrigger className="text-left">{f.q}</AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">{f.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </CardContent></Card>
-    </div>
-  ),
+  component: FAQsPage,
 });
+
+function FAQsPage() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["faqs"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("faqs").select("*").eq("published", true)
+        .order("category").order("sort_order");
+      if (error) throw error;
+      return data ?? [];
+    },
+  });
+
+  const grouped = (data ?? []).reduce<Record<string, typeof data extends (infer T)[] | undefined ? T[] : never>>((acc, f) => {
+    (acc[f.category] ??= []).push(f);
+    return acc;
+  }, {});
+
+  return (
+    <div>
+      <PageHeader eyebrow="Quick answers" title="Frequently Asked Questions" description="Common questions across ERP, CRM, marketing, support and operations." />
+      {isLoading ? (
+        <Card><CardContent className="p-10 text-center text-muted-foreground">Loading…</CardContent></Card>
+      ) : (data ?? []).length === 0 ? (
+        <Card><CardContent className="p-10 text-center text-muted-foreground">No FAQs published yet.</CardContent></Card>
+      ) : (
+        <div className="space-y-6">
+          {Object.entries(grouped).map(([cat, items]) => (
+            <Card key={cat}>
+              <CardContent className="p-6">
+                <h2 className="font-display text-lg font-semibold mb-3">{cat}</h2>
+                <Accordion type="single" collapsible className="w-full">
+                  {items.map((f) => (
+                    <AccordionItem key={f.id} value={f.id}>
+                      <AccordionTrigger className="text-left">{f.question}</AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground whitespace-pre-wrap">{f.answer}</AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
