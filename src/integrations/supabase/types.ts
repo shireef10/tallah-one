@@ -654,11 +654,35 @@ export type Database = {
     }
     Enums: {
       announcement_priority: "low" | "normal" | "high" | "critical"
+      app_permission:
+        | "view_dashboard"
+        | "manage_homepage"
+        | "manage_announcements"
+        | "manage_tutorials"
+        | "manage_knowledge"
+        | "manage_processes"
+        | "manage_faqs"
+        | "manage_team"
+        | "manage_vendors"
+        | "manage_partners"
+        | "manage_meetings"
+        | "manage_workspace_tools"
+        | "manage_service_requests"
+        | "manage_support_tickets"
+        | "manage_users"
+        | "manage_roles"
+        | "manage_media"
+        | "manage_audit"
+        | "manage_settings"
       app_role:
         | "super_admin"
         | "digital_transformation"
         | "department_manager"
         | "employee"
+        | "content_manager"
+        | "support_agent"
+        | "team_lead"
+        | "read_only"
       request_status:
         | "pending"
         | "approved"
@@ -795,11 +819,36 @@ export const Constants = {
   public: {
     Enums: {
       announcement_priority: ["low", "normal", "high", "critical"],
+      app_permission: [
+        "view_dashboard",
+        "manage_homepage",
+        "manage_announcements",
+        "manage_tutorials",
+        "manage_knowledge",
+        "manage_processes",
+        "manage_faqs",
+        "manage_team",
+        "manage_vendors",
+        "manage_partners",
+        "manage_meetings",
+        "manage_workspace_tools",
+        "manage_service_requests",
+        "manage_support_tickets",
+        "manage_users",
+        "manage_roles",
+        "manage_media",
+        "manage_audit",
+        "manage_settings",
+      ],
       app_role: [
         "super_admin",
         "digital_transformation",
         "department_manager",
         "employee",
+        "content_manager",
+        "support_agent",
+        "team_lead",
+        "read_only",
       ],
       request_status: [
         "pending",
