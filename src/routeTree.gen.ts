@@ -13,11 +13,13 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedWorkspaceRouteImport } from './routes/_authenticated/workspace'
+import { Route as AuthenticatedVendorsRouteImport } from './routes/_authenticated/vendors'
 import { Route as AuthenticatedTeamRouteImport } from './routes/_authenticated/team'
 import { Route as AuthenticatedSupportRouteImport } from './routes/_authenticated/support'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedServiceRequestsRouteImport } from './routes/_authenticated/service-requests'
 import { Route as AuthenticatedProcessesRouteImport } from './routes/_authenticated/processes'
+import { Route as AuthenticatedPartnersRouteImport } from './routes/_authenticated/partners'
 import { Route as AuthenticatedMeetingsRouteImport } from './routes/_authenticated/meetings'
 import { Route as AuthenticatedLearningRouteImport } from './routes/_authenticated/learning'
 import { Route as AuthenticatedKnowledgeRouteImport } from './routes/_authenticated/knowledge'
@@ -27,6 +29,7 @@ import { Route as AuthenticatedAnnouncementsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminWorkspaceToolsRouteImport } from './routes/_authenticated/admin.workspace-tools'
+import { Route as AuthenticatedAdminVendorsRouteImport } from './routes/_authenticated/admin.vendors'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminTutorialsRouteImport } from './routes/_authenticated/admin.tutorials'
 import { Route as AuthenticatedAdminTicketsRouteImport } from './routes/_authenticated/admin.tickets'
@@ -35,10 +38,15 @@ import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminServiceTypesRouteImport } from './routes/_authenticated/admin.service-types'
 import { Route as AuthenticatedAdminServiceRequestsRouteImport } from './routes/_authenticated/admin.service-requests'
 import { Route as AuthenticatedAdminProcessesRouteImport } from './routes/_authenticated/admin.processes'
+import { Route as AuthenticatedAdminPermissionsRouteImport } from './routes/_authenticated/admin.permissions'
+import { Route as AuthenticatedAdminPartnersRouteImport } from './routes/_authenticated/admin.partners'
 import { Route as AuthenticatedAdminMeetingsRouteImport } from './routes/_authenticated/admin.meetings'
+import { Route as AuthenticatedAdminMediaRouteImport } from './routes/_authenticated/admin.media'
 import { Route as AuthenticatedAdminKnowledgeCategoriesRouteImport } from './routes/_authenticated/admin.knowledge-categories'
 import { Route as AuthenticatedAdminKnowledgeRouteImport } from './routes/_authenticated/admin.knowledge'
+import { Route as AuthenticatedAdminHomepageRouteImport } from './routes/_authenticated/admin.homepage'
 import { Route as AuthenticatedAdminFaqsRouteImport } from './routes/_authenticated/admin.faqs'
+import { Route as AuthenticatedAdminAuditRouteImport } from './routes/_authenticated/admin.audit'
 import { Route as AuthenticatedAdminAnnouncementsRouteImport } from './routes/_authenticated/admin.announcements'
 
 const AuthRoute = AuthRouteImport.update({
@@ -58,6 +66,11 @@ const IndexRoute = IndexRouteImport.update({
 const AuthenticatedWorkspaceRoute = AuthenticatedWorkspaceRouteImport.update({
   id: '/workspace',
   path: '/workspace',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedVendorsRoute = AuthenticatedVendorsRouteImport.update({
+  id: '/vendors',
+  path: '/vendors',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedTeamRoute = AuthenticatedTeamRouteImport.update({
@@ -84,6 +97,11 @@ const AuthenticatedServiceRequestsRoute =
 const AuthenticatedProcessesRoute = AuthenticatedProcessesRouteImport.update({
   id: '/processes',
   path: '/processes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPartnersRoute = AuthenticatedPartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedMeetingsRoute = AuthenticatedMeetingsRouteImport.update({
@@ -133,6 +151,12 @@ const AuthenticatedAdminWorkspaceToolsRoute =
     path: '/workspace-tools',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminVendorsRoute =
+  AuthenticatedAdminVendorsRouteImport.update({
+    id: '/vendors',
+    path: '/vendors',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -179,12 +203,29 @@ const AuthenticatedAdminProcessesRoute =
     path: '/processes',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminPermissionsRoute =
+  AuthenticatedAdminPermissionsRouteImport.update({
+    id: '/permissions',
+    path: '/permissions',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPartnersRoute =
+  AuthenticatedAdminPartnersRouteImport.update({
+    id: '/partners',
+    path: '/partners',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminMeetingsRoute =
   AuthenticatedAdminMeetingsRouteImport.update({
     id: '/meetings',
     path: '/meetings',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminMediaRoute = AuthenticatedAdminMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
 const AuthenticatedAdminKnowledgeCategoriesRoute =
   AuthenticatedAdminKnowledgeCategoriesRouteImport.update({
     id: '/knowledge-categories',
@@ -197,9 +238,20 @@ const AuthenticatedAdminKnowledgeRoute =
     path: '/knowledge',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminHomepageRoute =
+  AuthenticatedAdminHomepageRouteImport.update({
+    id: '/homepage',
+    path: '/homepage',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminFaqsRoute = AuthenticatedAdminFaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminAuditRoute = AuthenticatedAdminAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
 const AuthenticatedAdminAnnouncementsRoute =
@@ -219,17 +271,24 @@ export interface FileRoutesByFullPath {
   '/knowledge': typeof AuthenticatedKnowledgeRoute
   '/learning': typeof AuthenticatedLearningRoute
   '/meetings': typeof AuthenticatedMeetingsRoute
+  '/partners': typeof AuthenticatedPartnersRoute
   '/processes': typeof AuthenticatedProcessesRoute
   '/service-requests': typeof AuthenticatedServiceRequestsRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/support': typeof AuthenticatedSupportRoute
   '/team': typeof AuthenticatedTeamRoute
+  '/vendors': typeof AuthenticatedVendorsRoute
   '/workspace': typeof AuthenticatedWorkspaceRoute
   '/admin/announcements': typeof AuthenticatedAdminAnnouncementsRoute
+  '/admin/audit': typeof AuthenticatedAdminAuditRoute
   '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
+  '/admin/homepage': typeof AuthenticatedAdminHomepageRoute
   '/admin/knowledge': typeof AuthenticatedAdminKnowledgeRoute
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
+  '/admin/media': typeof AuthenticatedAdminMediaRoute
   '/admin/meetings': typeof AuthenticatedAdminMeetingsRoute
+  '/admin/partners': typeof AuthenticatedAdminPartnersRoute
+  '/admin/permissions': typeof AuthenticatedAdminPermissionsRoute
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/admin/service-requests': typeof AuthenticatedAdminServiceRequestsRoute
   '/admin/service-types': typeof AuthenticatedAdminServiceTypesRoute
@@ -238,6 +297,7 @@ export interface FileRoutesByFullPath {
   '/admin/tickets': typeof AuthenticatedAdminTicketsRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/admin/vendors': typeof AuthenticatedAdminVendorsRoute
   '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
@@ -250,17 +310,24 @@ export interface FileRoutesByTo {
   '/knowledge': typeof AuthenticatedKnowledgeRoute
   '/learning': typeof AuthenticatedLearningRoute
   '/meetings': typeof AuthenticatedMeetingsRoute
+  '/partners': typeof AuthenticatedPartnersRoute
   '/processes': typeof AuthenticatedProcessesRoute
   '/service-requests': typeof AuthenticatedServiceRequestsRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/support': typeof AuthenticatedSupportRoute
   '/team': typeof AuthenticatedTeamRoute
+  '/vendors': typeof AuthenticatedVendorsRoute
   '/workspace': typeof AuthenticatedWorkspaceRoute
   '/admin/announcements': typeof AuthenticatedAdminAnnouncementsRoute
+  '/admin/audit': typeof AuthenticatedAdminAuditRoute
   '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
+  '/admin/homepage': typeof AuthenticatedAdminHomepageRoute
   '/admin/knowledge': typeof AuthenticatedAdminKnowledgeRoute
   '/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
+  '/admin/media': typeof AuthenticatedAdminMediaRoute
   '/admin/meetings': typeof AuthenticatedAdminMeetingsRoute
+  '/admin/partners': typeof AuthenticatedAdminPartnersRoute
+  '/admin/permissions': typeof AuthenticatedAdminPermissionsRoute
   '/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/admin/service-requests': typeof AuthenticatedAdminServiceRequestsRoute
   '/admin/service-types': typeof AuthenticatedAdminServiceTypesRoute
@@ -269,6 +336,7 @@ export interface FileRoutesByTo {
   '/admin/tickets': typeof AuthenticatedAdminTicketsRoute
   '/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/admin/vendors': typeof AuthenticatedAdminVendorsRoute
   '/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
@@ -284,17 +352,24 @@ export interface FileRoutesById {
   '/_authenticated/knowledge': typeof AuthenticatedKnowledgeRoute
   '/_authenticated/learning': typeof AuthenticatedLearningRoute
   '/_authenticated/meetings': typeof AuthenticatedMeetingsRoute
+  '/_authenticated/partners': typeof AuthenticatedPartnersRoute
   '/_authenticated/processes': typeof AuthenticatedProcessesRoute
   '/_authenticated/service-requests': typeof AuthenticatedServiceRequestsRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/support': typeof AuthenticatedSupportRoute
   '/_authenticated/team': typeof AuthenticatedTeamRoute
+  '/_authenticated/vendors': typeof AuthenticatedVendorsRoute
   '/_authenticated/workspace': typeof AuthenticatedWorkspaceRoute
   '/_authenticated/admin/announcements': typeof AuthenticatedAdminAnnouncementsRoute
+  '/_authenticated/admin/audit': typeof AuthenticatedAdminAuditRoute
   '/_authenticated/admin/faqs': typeof AuthenticatedAdminFaqsRoute
+  '/_authenticated/admin/homepage': typeof AuthenticatedAdminHomepageRoute
   '/_authenticated/admin/knowledge': typeof AuthenticatedAdminKnowledgeRoute
   '/_authenticated/admin/knowledge-categories': typeof AuthenticatedAdminKnowledgeCategoriesRoute
+  '/_authenticated/admin/media': typeof AuthenticatedAdminMediaRoute
   '/_authenticated/admin/meetings': typeof AuthenticatedAdminMeetingsRoute
+  '/_authenticated/admin/partners': typeof AuthenticatedAdminPartnersRoute
+  '/_authenticated/admin/permissions': typeof AuthenticatedAdminPermissionsRoute
   '/_authenticated/admin/processes': typeof AuthenticatedAdminProcessesRoute
   '/_authenticated/admin/service-requests': typeof AuthenticatedAdminServiceRequestsRoute
   '/_authenticated/admin/service-types': typeof AuthenticatedAdminServiceTypesRoute
@@ -303,6 +378,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/tickets': typeof AuthenticatedAdminTicketsRoute
   '/_authenticated/admin/tutorials': typeof AuthenticatedAdminTutorialsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/_authenticated/admin/vendors': typeof AuthenticatedAdminVendorsRoute
   '/_authenticated/admin/workspace-tools': typeof AuthenticatedAdminWorkspaceToolsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
@@ -318,17 +394,24 @@ export interface FileRouteTypes {
     | '/knowledge'
     | '/learning'
     | '/meetings'
+    | '/partners'
     | '/processes'
     | '/service-requests'
     | '/settings'
     | '/support'
     | '/team'
+    | '/vendors'
     | '/workspace'
     | '/admin/announcements'
+    | '/admin/audit'
     | '/admin/faqs'
+    | '/admin/homepage'
     | '/admin/knowledge'
     | '/admin/knowledge-categories'
+    | '/admin/media'
     | '/admin/meetings'
+    | '/admin/partners'
+    | '/admin/permissions'
     | '/admin/processes'
     | '/admin/service-requests'
     | '/admin/service-types'
@@ -337,6 +420,7 @@ export interface FileRouteTypes {
     | '/admin/tickets'
     | '/admin/tutorials'
     | '/admin/users'
+    | '/admin/vendors'
     | '/admin/workspace-tools'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -349,17 +433,24 @@ export interface FileRouteTypes {
     | '/knowledge'
     | '/learning'
     | '/meetings'
+    | '/partners'
     | '/processes'
     | '/service-requests'
     | '/settings'
     | '/support'
     | '/team'
+    | '/vendors'
     | '/workspace'
     | '/admin/announcements'
+    | '/admin/audit'
     | '/admin/faqs'
+    | '/admin/homepage'
     | '/admin/knowledge'
     | '/admin/knowledge-categories'
+    | '/admin/media'
     | '/admin/meetings'
+    | '/admin/partners'
+    | '/admin/permissions'
     | '/admin/processes'
     | '/admin/service-requests'
     | '/admin/service-types'
@@ -368,6 +459,7 @@ export interface FileRouteTypes {
     | '/admin/tickets'
     | '/admin/tutorials'
     | '/admin/users'
+    | '/admin/vendors'
     | '/admin/workspace-tools'
     | '/admin'
   id:
@@ -382,17 +474,24 @@ export interface FileRouteTypes {
     | '/_authenticated/knowledge'
     | '/_authenticated/learning'
     | '/_authenticated/meetings'
+    | '/_authenticated/partners'
     | '/_authenticated/processes'
     | '/_authenticated/service-requests'
     | '/_authenticated/settings'
     | '/_authenticated/support'
     | '/_authenticated/team'
+    | '/_authenticated/vendors'
     | '/_authenticated/workspace'
     | '/_authenticated/admin/announcements'
+    | '/_authenticated/admin/audit'
     | '/_authenticated/admin/faqs'
+    | '/_authenticated/admin/homepage'
     | '/_authenticated/admin/knowledge'
     | '/_authenticated/admin/knowledge-categories'
+    | '/_authenticated/admin/media'
     | '/_authenticated/admin/meetings'
+    | '/_authenticated/admin/partners'
+    | '/_authenticated/admin/permissions'
     | '/_authenticated/admin/processes'
     | '/_authenticated/admin/service-requests'
     | '/_authenticated/admin/service-types'
@@ -401,6 +500,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/tickets'
     | '/_authenticated/admin/tutorials'
     | '/_authenticated/admin/users'
+    | '/_authenticated/admin/vendors'
     | '/_authenticated/admin/workspace-tools'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
@@ -441,6 +541,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedWorkspaceRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/vendors': {
+      id: '/_authenticated/vendors'
+      path: '/vendors'
+      fullPath: '/vendors'
+      preLoaderRoute: typeof AuthenticatedVendorsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/team': {
       id: '/_authenticated/team'
       path: '/team'
@@ -474,6 +581,13 @@ declare module '@tanstack/react-router' {
       path: '/processes'
       fullPath: '/processes'
       preLoaderRoute: typeof AuthenticatedProcessesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/partners': {
+      id: '/_authenticated/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof AuthenticatedPartnersRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/meetings': {
@@ -539,6 +653,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminWorkspaceToolsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/vendors': {
+      id: '/_authenticated/admin/vendors'
+      path: '/vendors'
+      fullPath: '/admin/vendors'
+      preLoaderRoute: typeof AuthenticatedAdminVendorsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/users': {
       id: '/_authenticated/admin/users'
       path: '/users'
@@ -595,11 +716,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminProcessesRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/permissions': {
+      id: '/_authenticated/admin/permissions'
+      path: '/permissions'
+      fullPath: '/admin/permissions'
+      preLoaderRoute: typeof AuthenticatedAdminPermissionsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/partners': {
+      id: '/_authenticated/admin/partners'
+      path: '/partners'
+      fullPath: '/admin/partners'
+      preLoaderRoute: typeof AuthenticatedAdminPartnersRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/meetings': {
       id: '/_authenticated/admin/meetings'
       path: '/meetings'
       fullPath: '/admin/meetings'
       preLoaderRoute: typeof AuthenticatedAdminMeetingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/media': {
+      id: '/_authenticated/admin/media'
+      path: '/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AuthenticatedAdminMediaRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/knowledge-categories': {
@@ -616,11 +758,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminKnowledgeRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/homepage': {
+      id: '/_authenticated/admin/homepage'
+      path: '/homepage'
+      fullPath: '/admin/homepage'
+      preLoaderRoute: typeof AuthenticatedAdminHomepageRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/faqs': {
       id: '/_authenticated/admin/faqs'
       path: '/faqs'
       fullPath: '/admin/faqs'
       preLoaderRoute: typeof AuthenticatedAdminFaqsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/audit': {
+      id: '/_authenticated/admin/audit'
+      path: '/audit'
+      fullPath: '/admin/audit'
+      preLoaderRoute: typeof AuthenticatedAdminAuditRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/announcements': {
@@ -635,10 +791,15 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnnouncementsRoute: typeof AuthenticatedAdminAnnouncementsRoute
+  AuthenticatedAdminAuditRoute: typeof AuthenticatedAdminAuditRoute
   AuthenticatedAdminFaqsRoute: typeof AuthenticatedAdminFaqsRoute
+  AuthenticatedAdminHomepageRoute: typeof AuthenticatedAdminHomepageRoute
   AuthenticatedAdminKnowledgeRoute: typeof AuthenticatedAdminKnowledgeRoute
   AuthenticatedAdminKnowledgeCategoriesRoute: typeof AuthenticatedAdminKnowledgeCategoriesRoute
+  AuthenticatedAdminMediaRoute: typeof AuthenticatedAdminMediaRoute
   AuthenticatedAdminMeetingsRoute: typeof AuthenticatedAdminMeetingsRoute
+  AuthenticatedAdminPartnersRoute: typeof AuthenticatedAdminPartnersRoute
+  AuthenticatedAdminPermissionsRoute: typeof AuthenticatedAdminPermissionsRoute
   AuthenticatedAdminProcessesRoute: typeof AuthenticatedAdminProcessesRoute
   AuthenticatedAdminServiceRequestsRoute: typeof AuthenticatedAdminServiceRequestsRoute
   AuthenticatedAdminServiceTypesRoute: typeof AuthenticatedAdminServiceTypesRoute
@@ -647,17 +808,23 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminTicketsRoute: typeof AuthenticatedAdminTicketsRoute
   AuthenticatedAdminTutorialsRoute: typeof AuthenticatedAdminTutorialsRoute
   AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
+  AuthenticatedAdminVendorsRoute: typeof AuthenticatedAdminVendorsRoute
   AuthenticatedAdminWorkspaceToolsRoute: typeof AuthenticatedAdminWorkspaceToolsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnnouncementsRoute: AuthenticatedAdminAnnouncementsRoute,
+  AuthenticatedAdminAuditRoute: AuthenticatedAdminAuditRoute,
   AuthenticatedAdminFaqsRoute: AuthenticatedAdminFaqsRoute,
+  AuthenticatedAdminHomepageRoute: AuthenticatedAdminHomepageRoute,
   AuthenticatedAdminKnowledgeRoute: AuthenticatedAdminKnowledgeRoute,
   AuthenticatedAdminKnowledgeCategoriesRoute:
     AuthenticatedAdminKnowledgeCategoriesRoute,
+  AuthenticatedAdminMediaRoute: AuthenticatedAdminMediaRoute,
   AuthenticatedAdminMeetingsRoute: AuthenticatedAdminMeetingsRoute,
+  AuthenticatedAdminPartnersRoute: AuthenticatedAdminPartnersRoute,
+  AuthenticatedAdminPermissionsRoute: AuthenticatedAdminPermissionsRoute,
   AuthenticatedAdminProcessesRoute: AuthenticatedAdminProcessesRoute,
   AuthenticatedAdminServiceRequestsRoute:
     AuthenticatedAdminServiceRequestsRoute,
@@ -667,6 +834,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminTicketsRoute: AuthenticatedAdminTicketsRoute,
   AuthenticatedAdminTutorialsRoute: AuthenticatedAdminTutorialsRoute,
   AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
+  AuthenticatedAdminVendorsRoute: AuthenticatedAdminVendorsRoute,
   AuthenticatedAdminWorkspaceToolsRoute: AuthenticatedAdminWorkspaceToolsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
@@ -682,11 +850,13 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedKnowledgeRoute: typeof AuthenticatedKnowledgeRoute
   AuthenticatedLearningRoute: typeof AuthenticatedLearningRoute
   AuthenticatedMeetingsRoute: typeof AuthenticatedMeetingsRoute
+  AuthenticatedPartnersRoute: typeof AuthenticatedPartnersRoute
   AuthenticatedProcessesRoute: typeof AuthenticatedProcessesRoute
   AuthenticatedServiceRequestsRoute: typeof AuthenticatedServiceRequestsRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedSupportRoute: typeof AuthenticatedSupportRoute
   AuthenticatedTeamRoute: typeof AuthenticatedTeamRoute
+  AuthenticatedVendorsRoute: typeof AuthenticatedVendorsRoute
   AuthenticatedWorkspaceRoute: typeof AuthenticatedWorkspaceRoute
 }
 
@@ -698,11 +868,13 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedKnowledgeRoute: AuthenticatedKnowledgeRoute,
   AuthenticatedLearningRoute: AuthenticatedLearningRoute,
   AuthenticatedMeetingsRoute: AuthenticatedMeetingsRoute,
+  AuthenticatedPartnersRoute: AuthenticatedPartnersRoute,
   AuthenticatedProcessesRoute: AuthenticatedProcessesRoute,
   AuthenticatedServiceRequestsRoute: AuthenticatedServiceRequestsRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedSupportRoute: AuthenticatedSupportRoute,
   AuthenticatedTeamRoute: AuthenticatedTeamRoute,
+  AuthenticatedVendorsRoute: AuthenticatedVendorsRoute,
   AuthenticatedWorkspaceRoute: AuthenticatedWorkspaceRoute,
 }
 

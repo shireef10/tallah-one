@@ -24,7 +24,9 @@ export const Route = createFileRoute("/_authenticated/admin/team")({
         { name: "phone", label: "Phone", type: "text" },
         { name: "photo_url", label: "Photo", type: "image", folder: "team" },
         { name: "bio", label: "Bio", type: "textarea" },
+        { name: "linkedin_url", label: "LinkedIn URL", type: "text" },
         { name: "whatsapp_group_url", label: "WhatsApp group / contact URL", type: "text" },
+        { name: "visible", label: "Visible in directory", type: "boolean", defaultValue: true },
         { name: "sort_order", label: "Sort order", type: "number" },
       ]}
     />

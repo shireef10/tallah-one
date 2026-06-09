@@ -39,6 +39,14 @@ function Dashboard() {
   const { profile, user, isAdmin } = useAuth();
   const name = profile?.full_name?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "there";
 
+  const hero = useQuery({
+    queryKey: ["site-settings", "homepage_hero"],
+    queryFn: async () => {
+      const { data } = await supabase.from("site_settings").select("value").eq("key", "homepage_hero").maybeSingle();
+      return (data?.value ?? {}) as { eyebrow?: string; title_template?: string; subtitle?: string; cta_primary_label?: string; cta_primary_href?: string; cta_secondary_label?: string; cta_secondary_href?: string };
+    },
+  });
+
   const tutorials = useQuery({
     queryKey: ["dash-tutorials"],
     queryFn: async () => {
@@ -55,6 +63,9 @@ function Dashboard() {
     },
   });
 
+  const h = hero.data ?? {};
+  const heroTitle = (h.title_template ?? "{name}, welcome to Tallah One").replace("{name}", name);
+
   return (
     <div className="space-y-8">
       <section
@@ -66,13 +77,13 @@ function Dashboard() {
         <div className="relative">
           <div className="flex items-center gap-2 text-sm font-medium text-primary-foreground/80">
             <Sparkles className="h-4 w-4" />
-            <span>{greeting()}</span>
+            <span>{h.eyebrow || greeting()}</span>
           </div>
-          <h1 className="font-display mt-3 text-4xl md:text-5xl font-semibold">{name}, welcome to Tallah One</h1>
-          <p className="mt-3 max-w-xl text-primary-foreground/85 text-lg">Everything you need for your workday is right here.</p>
+          <h1 className="font-display mt-3 text-4xl md:text-5xl font-semibold">{heroTitle}</h1>
+          <p className="mt-3 max-w-xl text-primary-foreground/85 text-lg">{h.subtitle ?? "Everything you need for your workday is right here."}</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild variant="secondary"><Link to="/workspace">Open Workspace</Link></Button>
-            <Button asChild variant="ghost" className="text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"><Link to="/learning">Browse Tallah Academy</Link></Button>
+            <Button asChild variant="secondary"><a href={h.cta_primary_href ?? "/workspace"}>{h.cta_primary_label ?? "Open Workspace"}</a></Button>
+            <Button asChild variant="ghost" className="text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"><a href={h.cta_secondary_href ?? "/learning"}>{h.cta_secondary_label ?? "Browse Tallah Academy"}</a></Button>
           </div>
         </div>
       </section>
