@@ -57,16 +57,29 @@ export function AppSidebar() {
         <SidebarMenu>
           {footerNav
             .filter((i) => i.title !== "Admin Panel" || isAdmin)
-            .map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild isActive={isActive(item.url)} tooltip={item.title}>
-                  <Link to={item.url}>
-                    <item.icon />
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
+            .map((item) => {
+              const isAdminItem = item.title === "Admin Panel";
+              return (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={isActive(item.url)}
+                    tooltip={item.title}
+                    className={isAdminItem ? "bg-primary/10 text-primary hover:bg-primary/15 data-[active=true]:bg-primary/20 font-medium" : ""}
+                  >
+                    <Link to={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                      {isAdminItem && !collapsed && (
+                        <span className="ml-auto text-[9px] uppercase tracking-wider rounded bg-primary/20 text-primary px-1.5 py-0.5">
+                          Admin
+                        </span>
+                      )}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              );
+            })}
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>

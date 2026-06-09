@@ -25,9 +25,16 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
 
+  const goPostLogin = async () => {
+    const { landingRouteForRoles, getCurrentUserRoles } = await import("@/lib/guards");
+    const roles = await getCurrentUserRoles();
+    navigate({ to: landingRouteForRoles(roles), replace: true });
+  };
+
   useEffect(() => {
-    if (!loading && session) navigate({ to: "/dashboard", replace: true });
-  }, [loading, session, navigate]);
+    if (!loading && session) void goPostLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, session]);
 
   const signIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +43,7 @@ function AuthPage() {
     setBusy(false);
     if (error) return toast.error(error.message);
     toast.success("Welcome back");
-    navigate({ to: "/dashboard", replace: true });
+    await goPostLogin();
   };
 
   const signUp = async (e: React.FormEvent) => {
@@ -59,7 +66,7 @@ function AuthPage() {
     const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/dashboard" });
     if (result.error) { setBusy(false); return toast.error(result.error.message ?? "Google sign-in failed"); }
     if (result.redirected) return;
-    navigate({ to: "/dashboard", replace: true });
+    await goPostLogin();
   };
 
   return (

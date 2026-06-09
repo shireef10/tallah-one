@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import {
   ArrowUpRight, Briefcase, GraduationCap, LifeBuoy, Megaphone, MessageSquare,
-  Mail, ShoppingBag, BarChart3, Sparkles, FileText, CalendarDays,
+  Mail, ShoppingBag, BarChart3, Sparkles, FileText, CalendarDays, Shield,
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -36,7 +36,7 @@ function greeting() {
 }
 
 function Dashboard() {
-  const { profile, user } = useAuth();
+  const { profile, user, isAdmin } = useAuth();
   const name = profile?.full_name?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "there";
 
   const tutorials = useQuery({
@@ -76,6 +76,28 @@ function Dashboard() {
           </div>
         </div>
       </section>
+
+      {isAdmin && (
+        <section>
+          <Link to="/admin" className="group block">
+            <Card className="border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent hover:shadow-[var(--shadow-elegant)] transition-all">
+              <CardContent className="p-6 flex items-center gap-5">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-elegant)] shrink-0">
+                  <Shield className="h-6 w-6" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <p className="font-display text-lg font-semibold">Admin Dashboard</p>
+                    <Badge variant="secondary" className="text-[10px]">Admin only</Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Manage users, content, tutorials, announcements and platform settings.</p>
+                </div>
+                <Button variant="default" className="shrink-0">Open Admin Panel <ArrowUpRight className="h-4 w-4 ml-1" /></Button>
+              </CardContent>
+            </Card>
+          </Link>
+        </section>
+      )}
 
       <section>
         <div className="flex items-center justify-between mb-4">
