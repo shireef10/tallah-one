@@ -37,7 +37,7 @@ function useSaveSetting(key: string) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (value: unknown) => {
-      const { error } = await supabase.from("site_settings").upsert({ key, value });
+      const { error } = await supabase.from("site_settings").upsert({ key, value: value as never });
       if (error) throw error;
     },
     onSuccess: () => { qc.invalidateQueries({ queryKey: ["site-settings", key] }); toast.success("Saved"); },

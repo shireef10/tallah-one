@@ -21,7 +21,7 @@ async function audit(actorId: string, actorEmail: string | null, action: string,
   await admin.from("audit_log").insert({
     actor_id: actorId, actor_email: actorEmail, action,
     resource_type: resource.type, resource_id: resource.id ?? null,
-    metadata: meta ?? null,
+    metadata: (meta ?? null) as never,
   });
 }
 
