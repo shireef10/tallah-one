@@ -19,6 +19,8 @@ type AuthCtx = {
   profile: Profile | null;
   roles: Role[];
   isAdmin: boolean;
+  isSuperAdmin: boolean;
+  hasRole: (...r: Role[]) => boolean;
   loading: boolean;
   refresh: () => Promise<void>;
 };
