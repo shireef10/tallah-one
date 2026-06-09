@@ -36,7 +36,7 @@ function greeting() {
 }
 
 function Dashboard() {
-  const { profile, user } = useAuth();
+  const { profile, user, isAdmin } = useAuth();
   const name = profile?.full_name?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "there";
 
   const tutorials = useQuery({
