@@ -2,7 +2,7 @@ import { createFileRoute, Link, Outlet, redirect, useRouterState } from "@tansta
 import {
   Users, GraduationCap, Megaphone, Shield, BookOpen, Workflow, HelpCircle,
   CalendarDays, ClipboardList, LifeBuoy, Briefcase, Settings, LayoutDashboard,
-  FolderTree, Wrench,
+  FolderTree, Wrench, Building2, Handshake, Image as ImageIcon, ScrollText, Home, KeyRound,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
@@ -23,7 +23,18 @@ export const Route = createFileRoute("/_authenticated/admin")({
 });
 
 const sections = [
-  { group: "Overview", items: [{ to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true }] },
+  { group: "Overview", items: [
+    { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+    { to: "/admin/audit", label: "Audit Log", icon: ScrollText },
+  ] },
+  {
+    group: "Site",
+    items: [
+      { to: "/admin/homepage", label: "Homepage Builder", icon: Home },
+      { to: "/admin/settings", label: "Site Settings", icon: Settings },
+      { to: "/admin/media", label: "Media Library", icon: ImageIcon },
+    ],
+  },
   {
     group: "Content",
     items: [
@@ -49,8 +60,15 @@ const sections = [
     group: "Organization",
     items: [
       { to: "/admin/team", label: "Team Directory", icon: Users },
-      { to: "/admin/users", label: "Users & Roles", icon: Shield },
-      { to: "/admin/settings", label: "Site Settings", icon: Settings },
+      { to: "/admin/vendors", label: "Vendors", icon: Building2 },
+      { to: "/admin/partners", label: "Partners", icon: Handshake },
+    ],
+  },
+  {
+    group: "Access",
+    items: [
+      { to: "/admin/users", label: "Users", icon: Users },
+      { to: "/admin/permissions", label: "Roles & Permissions", icon: KeyRound },
     ],
   },
 ];
