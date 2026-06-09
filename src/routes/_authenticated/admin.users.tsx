@@ -132,7 +132,7 @@ function UsersAdmin() {
         eyebrow={<span className="inline-flex items-center gap-1"><Shield className="h-3 w-3" />Admin</span>}
         title="Users"
         description="Create, edit, deactivate, lock and reset passwords. Assign roles."
-        actions={<NewUserDialog onCreate={(d) => createMut.mutate(d)} submitting={createMut.isPending} />}
+        action={<NewUserDialog onCreate={(d) => createMut.mutate(d)} submitting={createMut.isPending} />}
       />
       <Card>
         <CardContent className="p-0 overflow-x-auto">
