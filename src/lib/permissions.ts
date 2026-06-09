@@ -1,0 +1,56 @@
+export const PERMISSIONS = [
+  "view_dashboard",
+  "manage_homepage",
+  "manage_announcements",
+  "manage_tutorials",
+  "manage_knowledge",
+  "manage_processes",
+  "manage_faqs",
+  "manage_team",
+  "manage_vendors",
+  "manage_partners",
+  "manage_meetings",
+  "manage_workspace_tools",
+  "manage_service_requests",
+  "manage_support_tickets",
+  "manage_users",
+  "manage_roles",
+  "manage_media",
+  "manage_audit",
+  "manage_settings",
+] as const;
+export type Permission = (typeof PERMISSIONS)[number];
+
+export const ROLES = [
+  "super_admin",
+  "digital_transformation",
+  "department_manager",
+  "content_manager",
+  "support_agent",
+  "team_lead",
+  "employee",
+  "read_only",
+] as const;
+export type AppRole = (typeof ROLES)[number];
+
+export const PERMISSION_LABELS: Record<Permission, string> = {
+  view_dashboard: "View Dashboard",
+  manage_homepage: "Manage Homepage",
+  manage_announcements: "Manage Announcements",
+  manage_tutorials: "Manage Tutorials",
+  manage_knowledge: "Manage Knowledge Base",
+  manage_processes: "Manage Processes",
+  manage_faqs: "Manage FAQs",
+  manage_team: "Manage Team Directory",
+  manage_vendors: "Manage Vendors",
+  manage_partners: "Manage Partners",
+  manage_meetings: "Manage Meetings",
+  manage_workspace_tools: "Manage Workspace Tools",
+  manage_service_requests: "Manage Service Requests",
+  manage_support_tickets: "Manage Support Tickets",
+  manage_users: "Manage Users",
+  manage_roles: "Manage Roles & Permissions",
+  manage_media: "Manage Media Library",
+  manage_audit: "View Audit Log",
+  manage_settings: "Manage Site Settings",
+};
