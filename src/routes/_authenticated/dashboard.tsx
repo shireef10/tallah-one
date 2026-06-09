@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import {
   ArrowUpRight, Briefcase, GraduationCap, LifeBuoy, Megaphone, MessageSquare,
-  Mail, ShoppingBag, BarChart3, Sparkles, FileText, CalendarDays,
+  Mail, ShoppingBag, BarChart3, Sparkles, FileText, CalendarDays, Shield,
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
