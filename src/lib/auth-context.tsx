@@ -67,9 +67,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const isAdmin = roles.includes("super_admin") || roles.includes("digital_transformation");
+  const isSuperAdmin = roles.includes("super_admin");
+  const hasRole = (...r: Role[]) => r.some((x) => roles.includes(x));
 
   return (
-    <Ctx.Provider value={{ user: session?.user ?? null, session, profile, roles, isAdmin, loading, refresh }}>
+    <Ctx.Provider value={{ user: session?.user ?? null, session, profile, roles, isAdmin, isSuperAdmin, hasRole, loading, refresh }}>
       {children}
     </Ctx.Provider>
   );
